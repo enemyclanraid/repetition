@@ -8,7 +8,30 @@ pipeline {
         )
     }
     stages {
-        // ... ваши стадии ...
+        stage('Info') {
+            steps {
+                echo "Ветка: ${env.GIT_BRANCH}"
+                echo "Коммит: ${env.GIT_COMMIT}"
+            }
+        }
+        stage('Build') {
+            steps {
+                echo 'Сборка проекта...'
+                // Здесь ваши команды сборки
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Запуск тестов...'
+                // Здесь ваши команды тестирования
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo "Деплой в окружение: ${params.ENV}"
+                // Здесь команда деплоя
+            }
+        }
     }
     post {
         success {
